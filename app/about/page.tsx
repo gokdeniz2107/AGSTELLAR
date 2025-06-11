@@ -1,236 +1,356 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowLeft, Brain, Code, TrendingUp, Smartphone } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { ArrowLeft, Mail, MapPin, Github, Linkedin, Code, Brain, TrendingUp, Menu } from "lucide-react"
 import Link from "next/link"
 import StaticBackground from "@/components/static-background"
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen text-black" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
+    <div className="min-h-screen text-white bg-black" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* Static Background */}
       <StaticBackground />
 
       {/* Content Overlay */}
       <div className="relative z-10">
-        {/* Header */}
-        <header className="border-b border-slate-200 bg-white/70 backdrop-blur-md sticky top-0 z-50">
-          <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-            {/* Logo Text */}
-            <div className="text-left leading-none" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
-              <div className="text-2xl font-black text-black tracking-wider">AG</div>
-              <div className="text-2xl font-black text-black tracking-wider">STELL</div>
-              <div className="text-2xl font-black text-black tracking-wider">AR</div>
-            </div>
-
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link
-                href="/"
-                className="text-gray-700 hover:text-black transition-colors font-semibold text-lg"
-                style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-              >
-                Home
-              </Link>
-              <Link
-                href="/about"
-                className="text-black hover:text-gray-800 transition-colors font-semibold text-lg"
-                style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-              >
-                About
-              </Link>
-              <Link
-                href="/projects"
-                className="text-gray-700 hover:text-black transition-colors font-semibold text-lg"
-                style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-              >
-                Projects
-              </Link>
-              <Link
-                href="/blog"
-                className="text-gray-700 hover:text-black transition-colors font-semibold text-lg"
-                style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-              >
-                Blog
-              </Link>
-              <Link
-                href="/contact"
-                className="text-gray-700 hover:text-black transition-colors font-semibold text-lg"
-                style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-              >
-                Contact
-              </Link>
-            </nav>
-
-            <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold text-lg"
-              style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-            >
-              <Link href="/contact">Get In Touch</Link>
+        {/* Top Bar */}
+        <div className="bg-black border-b border-zinc-800">
+          <div className="container mx-auto px-4 flex justify-end py-2">
+            <Button variant="ghost" size="sm" className="text-white text-xs hover:bg-zinc-800">
+              SUBSCRIBE
             </Button>
+            <Button variant="ghost" size="sm" className="text-white text-xs hover:bg-zinc-800">
+              SIGN IN
+            </Button>
+          </div>
+        </div>
+
+        {/* Header */}
+        <header className="bg-black sticky top-0 z-50 border-b border-zinc-800">
+          <div className="container mx-auto px-4 py-4">
+            <div className="flex items-center justify-between">
+              {/* Logo */}
+              <div className="flex items-center">
+                <Link href="/" className="text-3xl font-black tracking-tighter">
+                  <span className="text-white">AG</span>
+                  <span className="text-white">STELLAR</span>
+                </Link>
+              </div>
+
+              {/* Navigation */}
+              <nav className="hidden md:flex items-center space-x-6">
+                <Link href="/tech" className="text-white hover:text-zinc-300 text-sm font-medium">
+                  Tech
+                </Link>
+                <Link href="/ai" className="text-white hover:text-zinc-300 text-sm font-medium">
+                  AI
+                </Link>
+                <Link href="/development" className="text-white hover:text-zinc-300 text-sm font-medium">
+                  Development
+                </Link>
+                <Link href="/projects" className="text-white hover:text-zinc-300 text-sm font-medium">
+                  Projects
+                </Link>
+                <Link href="/about" className="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
+                  About
+                </Link>
+              </nav>
+
+              {/* Search and Menu */}
+              <div className="flex items-center space-x-4">
+                <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </div>
+            </div>
           </div>
         </header>
 
         {/* About Content */}
         <section className="py-24">
-          <div className="container mx-auto px-6">
-            <Button variant="ghost" className="mb-8 text-black" asChild>
+          <div className="container mx-auto px-4">
+            <Button variant="ghost" className="mb-8 text-white hover:text-zinc-300" asChild>
               <Link href="/">
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
               </Link>
             </Button>
 
-            <div className="text-center mb-20">
-              <h2 className="text-5xl md:text-6xl font-bold mb-6">
-                <span className="text-black">About Me</span>
-              </h2>
-              <p className="text-gray-800 max-w-3xl mx-auto text-lg">Founder & Lead Developer at AGStellar</p>
-            </div>
+            <div className="grid md:grid-cols-12 gap-12">
+              {/* Founder Profile */}
+              <div className="md:col-span-4">
+                <div className="sticky top-32">
+                  <h2 className="text-2xl font-bold mb-2">Gökdeniz Karadeniz</h2>
+                  <p className="text-cyan-400 mb-6">Founder & CEO</p>
 
-            <div className="grid md:grid-cols-2 gap-16 items-start">
-              {/* Personal Story */}
-              <div className="space-y-8">
-                <Card className="bg-white border-slate-200 shadow-sm">
-                  <CardContent className="p-8">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center border border-blue-100">
-                        <Brain className="w-8 h-8 text-blue-600" />
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center">
+                        <Mail className="w-5 h-5 text-cyan-400" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-black">Gökdeniz</h3>
-                        <p className="text-gray-800">Founder & Lead Developer</p>
+                        <p className="text-sm text-zinc-400">Email</p>
+                        <p className="text-white">agstellarai@gmail.com</p>
                       </div>
                     </div>
-
-                    <div className="space-y-6 text-gray-800 leading-relaxed">
-                      <p>
-                        I'm Gökdeniz, the founder and lead developer at AgStellar, a software company dedicated to
-                        delivering advanced, scalable, and intelligent digital solutions.
-                      </p>
-
-                      <p>
-                        With a strong technical background and a vision rooted in innovation, I specialize in building
-                        high-performance systems that empower businesses to grow through technology. AgStellar offers a
-                        range of services including AI-based solutions, custom software development, mobile and web
-                        application development, and financial software systems — particularly in the domain of stock
-                        market technologies.
-                      </p>
-
-                      <p>
-                        My approach is guided by precision, performance, and long-term value. Every solution we build is
-                        the result of deep technical expertise, strategic thinking, and a commitment to excellence.
-                      </p>
-
-                      <p>
-                        AgStellar isn't just a development company — it's a technology partner for those ready to lead
-                        the future. Through innovative engineering and a focus on real-world impact, we help our clients
-                        turn ambitious ideas into powerful, working products.
-                      </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center">
+                        <MapPin className="w-5 h-5 text-cyan-400" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-zinc-400">Location</p>
+                        <p className="text-white">Antalya, Turkey</p>
+                      </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <Button variant="outline" size="icon" className="rounded-lg border-zinc-700 hover:bg-zinc-800">
+                      <Github className="w-5 h-5" />
+                    </Button>
+                    <Button variant="outline" size="icon" className="rounded-lg border-zinc-700 hover:bg-zinc-800">
+                      <Linkedin className="w-5 h-5" />
+                    </Button>
+                  </div>
+                </div>
               </div>
 
-              {/* Services & Expertise */}
-              <div className="space-y-8">
-                <Card className="bg-white border-slate-200 shadow-sm">
-                  <CardHeader>
-                    <CardTitle className="text-black text-xl">Core Services</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-6">
-                      {[
-                        {
-                          icon: Brain,
-                          title: "AI-Based Solutions",
-                          description: "Intelligent systems that adapt and learn",
-                        },
-                        {
-                          icon: Code,
-                          title: "Custom Software Development",
-                          description: "Tailored solutions for unique business needs",
-                        },
-                        {
-                          icon: Smartphone,
-                          title: "Mobile & Web Applications",
-                          description: "Cross-platform applications with modern UX",
-                        },
-                        {
-                          icon: TrendingUp,
-                          title: "Financial Software Systems",
-                          description: "Specialized in stock market technologies",
-                        },
-                      ].map((service, index) => (
-                        <div key={index} className="flex items-start gap-4">
-                          <div className="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center border border-purple-100 flex-shrink-0">
-                            <service.icon className="w-6 h-6 text-purple-600" />
-                          </div>
-                          <div>
-                            <h4 className="text-black font-semibold mb-1">{service.title}</h4>
-                            <p className="text-gray-800 text-sm">{service.description}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+              {/* About Content */}
+              <div className="md:col-span-8">
+                <h1 className="text-4xl md:text-5xl font-bold mb-8">About Me</h1>
 
-                <Card className="bg-white border-slate-200 shadow-sm">
-                  <CardHeader>
-                    <CardTitle className="text-black text-xl">Our Values</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      {[
-                        "Precision in every line of code",
-                        "Performance-driven solutions",
-                        "Long-term value creation",
-                        "Deep technical expertise",
-                        "Strategic thinking approach",
-                        "Commitment to excellence",
-                      ].map((value, index) => (
-                        <div key={index} className="flex items-center gap-3">
-                          <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
-                          <span className="text-gray-800">{value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-
-            {/* Call to Action */}
-            <div className="text-center mt-20">
-              <Card className="bg-slate-50 border-slate-200 max-w-2xl mx-auto">
-                <CardContent className="p-10">
-                  <h3 className="text-2xl font-bold text-black mb-4">Ready to Build the Future?</h3>
-                  <p className="text-gray-800 mb-8 leading-relaxed">
-                    Let's discuss how AgStellar can help transform your ambitious ideas into powerful, working products.
+                <div className="prose prose-lg prose-invert max-w-none">
+                  <p className="text-xl leading-relaxed mb-6">
+                    Hi there, I'm Gökdeniz, the founder of AgStellar — a forward-thinking software company specialized
+                    in artificial intelligence, application development, and financial technologies.
                   </p>
-                  <Button className="bg-orange-600 hover:bg-orange-700 text-white" size="lg" asChild>
-                    <Link href="/contact">
-                      Start Your Project
-                      <ArrowLeft className="ml-2 w-5 h-5 rotate-180" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
+
+                  <p className="text-lg text-zinc-300 leading-relaxed mb-6">
+                    Driven by a passion for building technology that shapes the future, I combine deep technical
+                    expertise with a strategic entrepreneurial mindset. At AgStellar, we don't just write code — we
+                    architect intelligent, scalable, and impactful solutions for real-world challenges.
+                  </p>
+
+                  <p className="text-lg text-zinc-300 leading-relaxed mb-6">
+                    My focus is on creating products that merge advanced AI capabilities with seamless digital
+                    experiences. From algorithmic trading systems to AI-powered platforms and enterprise-grade
+                    applications, I lead the development of technologies that are both innovative and commercially
+                    viable.
+                  </p>
+
+                  <p className="text-lg text-zinc-300 leading-relaxed mb-12">
+                    As a founder, I work at the intersection of technology, business, and innovation — building systems
+                    that are engineered not just to function, but to lead.
+                  </p>
+                </div>
+
+                {/* Expertise Areas */}
+                <h2 className="text-2xl font-bold mb-6">Areas of Expertise</h2>
+                <div className="grid md:grid-cols-3 gap-6 mb-12">
+                  <Card className="bg-zinc-900 border-zinc-800">
+                    <CardContent className="p-6">
+                      <div className="w-12 h-12 rounded-lg bg-blue-900/30 flex items-center justify-center mb-4">
+                        <Brain className="w-6 h-6 text-blue-400" />
+                      </div>
+                      <h3 className="text-lg font-bold mb-2 text-white">Artificial Intelligence</h3>
+                      <p className="text-zinc-400">
+                        Machine learning systems, predictive analytics, and AI integration
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-zinc-900 border-zinc-800">
+                    <CardContent className="p-6">
+                      <div className="w-12 h-12 rounded-lg bg-cyan-900/30 flex items-center justify-center mb-4">
+                        <Code className="w-6 h-6 text-cyan-400" />
+                      </div>
+                      <h3 className="text-lg font-bold mb-2 text-white">Software Development</h3>
+                      <p className="text-zinc-400">
+                        Full-stack applications, mobile development, and enterprise solutions
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-zinc-900 border-zinc-800">
+                    <CardContent className="p-6">
+                      <div className="w-12 h-12 rounded-lg bg-green-900/30 flex items-center justify-center mb-4">
+                        <TrendingUp className="w-6 h-6 text-green-400" />
+                      </div>
+                      <h3 className="text-lg font-bold mb-2 text-white">Financial Technology</h3>
+                      <p className="text-zinc-400">
+                        Algorithmic trading systems, financial analysis tools, and market data processing
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* CTA */}
+                <Card className="bg-gradient-to-br from-zinc-900 to-zinc-800 border-zinc-700">
+                  <CardContent className="p-8">
+                    <h3 className="text-2xl font-bold mb-4">Ready to work together?</h3>
+                    <p className="text-zinc-300 mb-6">
+                      Let's discuss how AgStellar can help bring your ideas to life with cutting-edge technology
+                      solutions.
+                    </p>
+                    <Button className="bg-cyan-500 hover:bg-cyan-600 text-white">
+                      <Link href="/contact">Get in Touch</Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="bg-slate-100 py-8 border-t border-slate-200">
-          <div className="container mx-auto px-6">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="text-left leading-none mb-4 md:mb-0">
-                <div className="text-xl font-black text-black tracking-wider">AG</div>
-                <div className="text-base font-black text-black tracking-wider">STELL</div>
-                <div className="text-lg font-black text-black tracking-wider">AR</div>
+        <footer className="bg-black py-12 border-t border-zinc-800">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-4 gap-8 mb-12">
+              <div>
+                <h3 className="text-xl font-bold mb-4">AGStellar</h3>
+                <p className="text-zinc-400 mb-4">
+                  Creating innovative software solutions that transform ideas into reality.
+                </p>
+                <div className="flex space-x-4">
+                  <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-5 w-5"
+                    >
+                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                    </svg>
+                  </Button>
+                  <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-5 w-5"
+                    >
+                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                    </svg>
+                  </Button>
+                  <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-5 w-5"
+                    >
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                      <rect width="4" height="12" x="2" y="9"></rect>
+                      <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                  </Button>
+                </div>
               </div>
 
-              <p className="text-gray-800">&copy; 2025 AGStellar. All rights reserved.</p>
+              <div>
+                <h4 className="font-medium mb-4 text-zinc-300">Categories</h4>
+                <ul className="space-y-2 text-zinc-400">
+                  <li>
+                    <Link href="#" className="hover:text-white">
+                      Technology
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#" className="hover:text-white">
+                      AI & Machine Learning
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#" className="hover:text-white">
+                      Web Development
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#" className="hover:text-white">
+                      Mobile Apps
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-medium mb-4 text-zinc-300">Company</h4>
+                <ul className="space-y-2 text-zinc-400">
+                  <li>
+                    <Link href="/about" className="hover:text-white">
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/projects" className="hover:text-white">
+                      Projects
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/contact" className="hover:text-white">
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-medium mb-4 text-zinc-300">Legal</h4>
+                <ul className="space-y-2 text-zinc-400">
+                  <li>
+                    <Link href="#" className="hover:text-white">
+                      Privacy Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#" className="hover:text-white">
+                      Terms of Service
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#" className="hover:text-white">
+                      Cookie Policy
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+              <p className="text-zinc-500 text-sm">&copy; 2025 AGStellar. All rights reserved.</p>
+              <div className="flex items-center mt-4 md:mt-0">
+                <Button variant="link" className="text-zinc-500 text-sm hover:text-white">
+                  Privacy
+                </Button>
+                <span className="text-zinc-700 mx-2">|</span>
+                <Button variant="link" className="text-zinc-500 text-sm hover:text-white">
+                  Terms
+                </Button>
+                <span className="text-zinc-700 mx-2">|</span>
+                <Button variant="link" className="text-zinc-500 text-sm hover:text-white">
+                  Sitemap
+                </Button>
+              </div>
             </div>
           </div>
         </footer>

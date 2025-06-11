@@ -2,85 +2,37 @@
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Menu, Search, ChevronRight } from "lucide-react"
+import { Menu, Search } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import StaticBackground from "@/components/static-background"
 import Image from "next/image"
 
-export default function HomePage() {
+export default function AIPage() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
   }, [])
 
-  const featuredArticle = {
-    title: "Innovating Tomorrow: The Future of AI and Technology",
-    excerpt: "How artificial intelligence is reshaping our world and what it means for the future of technology.",
-    author: "Gökdeniz",
-    date: "June 11, 2025",
-    category: "AI",
-    image: "/images/featured-ai-future.png",
-  }
-
-  const topStories = [
-    {
-      title: "London Startup AI Project Revolutionizes Business Intelligence",
-      excerpt: "How this groundbreaking platform is changing the game for startups.",
-      author: "AGStellar Team",
-      date: "June 10, 2025",
-      category: "Tech",
-      comments: 24,
-      image: "/images/london-street.png",
-    },
-    {
-      title: "The Evolution of Web Development in 2025",
-      excerpt: "New frameworks and technologies that are defining the modern web.",
-      author: "AGStellar Team",
-      date: "June 9, 2025",
-      category: "Development",
-      comments: 18,
-      image: "/images/web-development-setup.png",
-    },
-    {
-      title: "Mobile App Trends That Will Dominate Next Year",
-      excerpt: "What to expect in the world of mobile applications in the coming year.",
-      author: "AGStellar Team",
-      date: "June 8, 2025",
-      category: "Mobile",
-      comments: 32,
-      image: "/images/mobile-app-abstract.png",
-    },
-    {
-      title: "How Blockchain is Transforming Financial Systems",
-      excerpt: "A deep dive into the impact of blockchain technology on modern finance.",
-      author: "AGStellar Team",
-      date: "June 7, 2025",
-      category: "Blockchain",
-      comments: 15,
-      image: "/images/blockchain-bank.png",
-    },
-  ]
-
   const latestArticles = [
     {
-      title: "The Future of Software Development in the AI Era",
-      excerpt: "How artificial intelligence is changing the way we build and deploy software applications.",
+      title: "Neural Networks: Understanding Deep Learning Architecture",
+      excerpt: "A comprehensive guide to how neural networks process information and learn patterns.",
       image: "/images/tech-article-1.png",
-      category: "Technology",
+      category: "AI",
     },
     {
-      title: "Building Scalable Applications with Modern Architecture",
-      excerpt: "Best practices for creating robust, maintainable, and scalable software systems.",
+      title: "Computer Vision: Teaching Machines to See",
+      excerpt: "Latest advances in image recognition and visual processing technologies.",
       image: "/images/tech-article-2.png",
-      category: "Technology",
+      category: "AI",
     },
     {
-      title: "Machine Learning Integration in Web Applications",
-      excerpt: "Practical approaches to implementing ML features in modern web development.",
+      title: "Natural Language Processing in Real-World Applications",
+      excerpt: "How NLP is transforming customer service, content creation, and communication.",
       image: "/images/tech-article-3.png",
-      category: "Technology",
+      category: "AI",
     },
   ]
 
@@ -120,7 +72,7 @@ export default function HomePage() {
                 <Link href="/tech" className="text-white hover:text-zinc-300 text-sm font-medium">
                   Tech
                 </Link>
-                <Link href="/ai" className="text-white hover:text-zinc-300 text-sm font-medium">
+                <Link href="/ai" className="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
                   AI
                 </Link>
                 <Link href="/development" className="text-white hover:text-zinc-300 text-sm font-medium">
@@ -148,136 +100,74 @@ export default function HomePage() {
         </header>
 
         {/* Main Content */}
-        <main>
-          {/* Featured Article */}
-          <section className="py-8 relative">
-            <div className="container mx-auto px-4">
-              <div className="grid md:grid-cols-12 gap-8">
-                {/* Left Sidebar - Fixed Featured text */}
-                <div className="hidden md:block md:col-span-1">
-                  <div className="absolute top-64 left-6 z-20">
-                    <h2 className="text-5xl font-black tracking-tighter text-white uppercase transform -rotate-90 origin-top-left whitespace-nowrap">
-                      Featured
-                    </h2>
-                  </div>
-                </div>
+        <main className="py-12">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h1 className="text-5xl font-black tracking-tight mb-6">Artificial Intelligence</h1>
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-2xl font-bold mb-4">Intelligence. Reimagined.</h2>
+                <p className="text-zinc-300 text-lg leading-relaxed mb-4">
+                  At AgStellar, artificial intelligence is not a feature — it's a foundation.
+                </p>
+                <p className="text-zinc-300 text-lg leading-relaxed mb-4">
+                  We design and develop intelligent systems that can learn, adapt, and reason. From deep learning models
+                  and natural language interfaces to computer vision and predictive analytics, our AI technologies are
+                  built to solve complex problems at scale.
+                </p>
+                <p className="text-zinc-300 text-lg leading-relaxed mb-4">
+                  Our mission is to harness the power of AI to unlock new efficiencies, elevate user experiences, and
+                  drive competitive advantage for businesses across industries. With a deep commitment to research and a
+                  product-driven mindset, we engineer AI not just to automate — but to amplify human capability.
+                </p>
+                <p className="text-zinc-400 text-lg">This is where innovation meets intelligence</p>
+              </div>
+            </div>
 
-                {/* Main Featured Article */}
-                <div className="md:col-span-7">
-                  <div className="relative aspect-[4/3] mb-6">
+            {/* Articles Grid */}
+            <div className="grid md:grid-cols-3 gap-8">
+              {latestArticles.map((article, index) => (
+                <div key={index} className="group">
+                  <div className="relative aspect-video mb-4 overflow-hidden rounded-lg">
                     <Image
-                      src={featuredArticle.image || "/placeholder.svg"}
-                      alt={featuredArticle.title}
+                      src={article.image || "/placeholder.svg"}
+                      alt={article.title}
                       fill
-                      className="object-cover rounded-lg"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <Badge className="bg-cyan-500 hover:bg-cyan-600 mb-4">{featuredArticle.category}</Badge>
-                  <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight mb-4">
-                    {featuredArticle.title}
-                  </h1>
-                  <p className="text-lg text-zinc-300 mb-4">{featuredArticle.excerpt}</p>
-                  <div className="flex items-center text-sm text-zinc-400">
-                    <span>{featuredArticle.author}</span>
-                    <span className="mx-2">•</span>
-                    <span>{featuredArticle.date}</span>
+                  <Badge className="bg-zinc-800 text-xs mb-2">{article.category}</Badge>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-purple-400">
+                    <Link href="#">{article.title}</Link>
+                  </h3>
+                  <p className="text-zinc-400 text-sm mb-3">{article.excerpt}</p>
+                  <div className="flex items-center text-xs text-zinc-500">
+                    <span>AGStellar Team</span>
+                    <span className="mx-1">•</span>
+                    <span>June 5, 2025</span>
                   </div>
                 </div>
-
-                {/* Top Stories */}
-                <div className="md:col-span-4">
-                  <h3 className="text-lg font-medium text-cyan-500 mb-6">Top Stories</h3>
-                  <div className="space-y-8">
-                    {topStories.map((story, index) => (
-                      <div key={index} className="flex gap-4">
-                        <div className="flex-shrink-0 relative w-20 h-20 rounded-lg overflow-hidden">
-                          <Image
-                            src={story.image || "/placeholder.svg"}
-                            alt={story.title}
-                            fill
-                            className="object-cover hover:scale-105 transition-transform duration-300"
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center mb-1">
-                            <Badge className="bg-zinc-800 text-xs mr-2">{story.category}</Badge>
-                            <span className="text-xs text-zinc-500">{story.date}</span>
-                          </div>
-                          <h4 className="font-bold mb-1 leading-tight text-sm">
-                            <Link href="#" className="hover:text-cyan-400 line-clamp-2">
-                              {story.title}
-                            </Link>
-                          </h4>
-                          <div className="flex items-center text-xs text-zinc-500">
-                            <span>{story.author}</span>
-                            <span className="mx-1">•</span>
-                            <span>{story.comments} comments</span>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
-          </section>
-
-          {/* Latest Articles */}
-          <section className="py-12 bg-zinc-900">
-            <div className="container mx-auto px-4">
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl font-bold">Latest Articles</h2>
-                <Button variant="ghost" className="text-white hover:text-cyan-400 group">
-                  View All
-                  <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-8">
-                {latestArticles.map((article, index) => (
-                  <div key={index} className="group">
-                    <div className="relative aspect-video mb-4 overflow-hidden rounded-lg">
-                      <Image
-                        src={article.image || "/placeholder.svg"}
-                        alt={article.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <Badge className="bg-zinc-800 text-xs mb-2">{article.category}</Badge>
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-cyan-400">
-                      <Link href="#">{article.title}</Link>
-                    </h3>
-                    <p className="text-zinc-400 text-sm mb-3">{article.excerpt}</p>
-                    <div className="flex items-center text-xs text-zinc-500">
-                      <span>AGStellar Team</span>
-                      <span className="mx-1">•</span>
-                      <span>June 5, 2025</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Newsletter */}
-          <section className="py-16 bg-zinc-800">
-            <div className="container mx-auto px-4 max-w-4xl text-center">
-              <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-              <p className="text-zinc-300 mb-8 max-w-2xl mx-auto">
-                Subscribe to our newsletter to receive the latest updates on technology, AI, and software development.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="flex-1 px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                />
-                <Button className="bg-cyan-500 hover:bg-cyan-600 text-white">Subscribe</Button>
-              </div>
-            </div>
-          </section>
+          </div>
         </main>
+
+        {/* Newsletter */}
+        <section className="py-16 bg-zinc-800">
+          <div className="container mx-auto px-4 max-w-4xl text-center">
+            <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+            <p className="text-zinc-300 mb-8 max-w-2xl mx-auto">
+              Subscribe to our newsletter to receive the latest updates on technology, AI, and software development.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="flex-1 px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+              />
+              <Button className="bg-purple-500 hover:bg-purple-600 text-white">Subscribe</Button>
+            </div>
+          </div>
+        </section>
 
         {/* Footer */}
         <footer className="bg-black py-12 border-t border-zinc-800">

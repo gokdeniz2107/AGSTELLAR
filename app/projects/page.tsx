@@ -1,55 +1,48 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, ChevronRight } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import StaticBackground from "@/components/static-background"
-import Image from "next/image"
+import { Menu, Search, ChevronRight } from "lucide-react"
 
 export default function ProjectsPage() {
   const projects = [
     {
-      title: "London Startup AI Project",
-      description: "Advanced AI-powered business intelligence platform for London-based startup ecosystem.",
-      tech: ["Python", "TensorFlow", "React", "Node.js", "AWS"],
-      status: "Live",
-      image: "/placeholder.svg?height=400&width=600",
+      id: "london-ai-assistant",
+      title: "London AI Assistant App",
+      description:
+        "Advanced AI-powered assistant app developed for a London-based startup. This intelligent system helps businesses automate customer interactions, analyze data, and provide personalized recommendations.",
     },
     {
-      title: "AI Assistant",
-      description: "Artificial intelligence-powered assistant application.",
-      tech: ["Python", "React", "AI", "Cloud"],
-      status: "Live",
-      image: "/placeholder.svg?height=400&width=600",
+      id: "metatrader5-trading",
+      title: "MetaTrader5 Trading System",
+      description:
+        "Custom algorithmic trading system built for the MetaTrader5 platform. This solution includes advanced technical indicators, automated trading strategies, and real-time market analysis tools.",
     },
     {
-      title: "E-commerce Platform",
-      description: "Modern e-commerce and payment systems.",
-      tech: ["Next.js", "Stripe", "Web3", "API"],
-      status: "Development",
-      image: "/placeholder.svg?height=400&width=600",
+      id: "blockchain-payment",
+      title: "Blockchain Payment Solution",
+      description:
+        "Secure and efficient blockchain-based payment processing system. This project implements smart contracts for transparent transactions and includes a user-friendly wallet interface.",
     },
     {
-      title: "Portfolio Website",
-      description: "Personal portfolio website.",
-      tech: ["React", "Three.js", "GSAP", "WebGL"],
-      status: "Beta",
-      image: "/placeholder.svg?height=400&width=600",
+      id: "restaurant-management",
+      title: "Restaurant Management Platform",
+      description:
+        "Comprehensive web-based restaurant management system with online ordering, reservation management, inventory tracking, and customer relationship features.",
     },
     {
-      title: "Mobile App",
-      description: "Cross-platform mobile application with React Native.",
-      tech: ["React Native", "Firebase", "Redux", "Expo"],
-      status: "Planning",
-      image: "/placeholder.svg?height=400&width=600",
+      id: "tradingview-profit",
+      title: "TradingView Profit Strategy",
+      description:
+        "Custom TradingView script developed to help traders identify profitable entry and exit points. This strategy combines multiple technical indicators to generate high-probability trading signals.",
     },
     {
-      title: "Data Analytics Dashboard",
-      description: "Interactive dashboard for business analytics.",
-      tech: ["D3.js", "Node.js", "MongoDB", "Express"],
-      status: "Development",
-      image: "/placeholder.svg?height=400&width=600",
+      id: "ecommerce-analytics",
+      title: "E-commerce Analytics Dashboard",
+      description:
+        "Interactive analytics dashboard for e-commerce businesses to track sales, customer behavior, and inventory performance with actionable insights and predictive analytics.",
     },
   ]
 
@@ -95,13 +88,23 @@ export default function ProjectsPage() {
                 <Link href="/development" className="text-white hover:text-zinc-300 text-sm font-medium">
                   Development
                 </Link>
-                <Link href="/projects" className="text-white hover:text-zinc-300 text-sm font-medium">
+                <Link href="/projects" className="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
                   Projects
                 </Link>
-                <Link href="/blog" className="text-white hover:text-zinc-300 text-sm font-medium">
-                  Blog
+                <Link href="/about" className="text-white hover:text-zinc-300 text-sm font-medium">
+                  About
                 </Link>
               </nav>
+
+              {/* Search and Menu */}
+              <div className="flex items-center space-x-4">
+                <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
+                  <Search className="h-5 w-5" />
+                </Button>
+                <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800 md:hidden">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </div>
             </div>
           </div>
         </header>
@@ -118,7 +121,7 @@ export default function ProjectsPage() {
             <div className="flex items-center justify-between mb-12">
               <div>
                 <h1 className="text-5xl font-black tracking-tight mb-2">Projects</h1>
-                <p className="text-zinc-400">Our latest work and technology innovations</p>
+                <p className="text-zinc-400">Client projects and technology innovations delivered by AgStellar</p>
               </div>
               <Button className="bg-cyan-500 hover:bg-cyan-600 text-white">
                 Contact Us
@@ -126,45 +129,25 @@ export default function ProjectsPage() {
               </Button>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-12">
+            <div className="space-y-8">
               {projects.map((project, index) => (
-                <div key={index} className="group">
-                  <div className="relative aspect-video mb-6 overflow-hidden">
-                    <Image
-                      src={project.image || "/placeholder.svg"}
-                      alt={project.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-1/3" />
-                    <Badge
-                      className={`absolute top-4 right-4 ${
-                        project.status === "Live"
-                          ? "bg-green-500"
-                          : project.status === "Development"
-                            ? "bg-amber-500"
-                            : project.status === "Beta"
-                              ? "bg-blue-500"
-                              : "bg-purple-500"
-                      }`}
-                    >
-                      {project.status}
-                    </Badge>
+                <div
+                  key={index}
+                  className="bg-zinc-900 border border-zinc-800 rounded-xl p-8 hover:border-zinc-700 transition-all duration-300"
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-2xl font-bold group-hover:text-cyan-400 transition-colors">{project.title}</h2>
                   </div>
-                  <h2 className="text-2xl font-bold mb-3 group-hover:text-cyan-400 transition-colors">
-                    <Link href="#">{project.title}</Link>
-                  </h2>
-                  <p className="text-zinc-300 mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="outline" className="border-zinc-700 text-zinc-300 bg-zinc-900">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                  <Button variant="ghost" className="text-cyan-400 hover:text-cyan-300 hover:bg-zinc-800 px-0 group">
-                    View Project Details
-                    <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <p className="text-zinc-300 mb-6">{project.description}</p>
+                  <Button
+                    variant="ghost"
+                    className="text-cyan-400 hover:text-cyan-300 hover:bg-zinc-800 px-0 group"
+                    asChild
+                  >
+                    <Link href={`/projects/${project.id}`}>
+                      View Project Details
+                      <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
                   </Button>
                 </div>
               ))}
@@ -285,11 +268,6 @@ export default function ProjectsPage() {
                   <li>
                     <Link href="/projects" className="hover:text-white">
                       Projects
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/blog" className="hover:text-white">
-                      Blog
                     </Link>
                   </li>
                   <li>

@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, ArrowRight, Calendar, User } from "lucide-react"
+import { ArrowLeft, ArrowRight, Calendar, User, Search, Menu } from "lucide-react"
 import Link from "next/link"
 import StaticBackground from "@/components/static-background"
 
@@ -45,73 +45,72 @@ export default function BlogPage() {
   ]
 
   return (
-    <div className="min-h-screen text-black" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
+    <div className="min-h-screen text-white bg-black" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* Static Background */}
       <StaticBackground />
 
       {/* Content Overlay */}
       <div className="relative z-10">
-        {/* Header */}
-        <header className="border-b border-slate-200 bg-white/70 backdrop-blur-md sticky top-0 z-50">
-          <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-            {/* Logo Text */}
-            <div className="text-left leading-none" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
-              <div className="text-2xl font-black text-black tracking-wider">AG</div>
-              <div className="text-2xl font-black text-black tracking-wider">STELL</div>
-              <div className="text-2xl font-black text-black tracking-wider">AR</div>
-            </div>
-
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link
-                href="/"
-                className="text-gray-700 hover:text-black transition-colors font-semibold text-lg"
-                style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-              >
-                Home
-              </Link>
-              <Link
-                href="/about"
-                className="text-gray-700 hover:text-black transition-colors font-semibold text-lg"
-                style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-              >
-                About
-              </Link>
-              <Link
-                href="/projects"
-                className="text-gray-700 hover:text-black transition-colors font-semibold text-lg"
-                style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-              >
-                Projects
-              </Link>
-              <Link
-                href="/blog"
-                className="text-black hover:text-gray-800 transition-colors font-semibold text-lg"
-                style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-              >
-                Blog
-              </Link>
-              <Link
-                href="/contact"
-                className="text-gray-700 hover:text-black transition-colors font-semibold text-lg"
-                style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-              >
-                Contact
-              </Link>
-            </nav>
-
-            <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold text-lg"
-              style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-            >
-              <Link href="/contact">Get In Touch</Link>
+        {/* Top Bar */}
+        <div className="bg-black border-b border-zinc-800">
+          <div className="container mx-auto px-4 flex justify-end py-2">
+            <Button variant="ghost" size="sm" className="text-white text-xs hover:bg-zinc-800">
+              SUBSCRIBE
             </Button>
+            <Button variant="ghost" size="sm" className="text-white text-xs hover:bg-zinc-800">
+              SIGN IN
+            </Button>
+          </div>
+        </div>
+
+        {/* Header */}
+        <header className="bg-black sticky top-0 z-50 border-b border-zinc-800">
+          <div className="container mx-auto px-4 py-4">
+            <div className="flex items-center justify-between">
+              {/* Logo */}
+              <div className="flex items-center">
+                <Link href="/" className="text-3xl font-black tracking-tighter">
+                  <span className="text-white">AG</span>
+                  <span className="text-white">STELLAR</span>
+                </Link>
+              </div>
+
+              {/* Navigation */}
+              <nav className="hidden md:flex items-center space-x-6">
+                <Link href="/tech" className="text-white hover:text-zinc-300 text-sm font-medium">
+                  Tech
+                </Link>
+                <Link href="/ai" className="text-white hover:text-zinc-300 text-sm font-medium">
+                  AI
+                </Link>
+                <Link href="/development" className="text-white hover:text-zinc-300 text-sm font-medium">
+                  Development
+                </Link>
+                <Link href="/projects" className="text-white hover:text-zinc-300 text-sm font-medium">
+                  Projects
+                </Link>
+                <Link href="/blog" className="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
+                  Blog
+                </Link>
+              </nav>
+
+              {/* Search and Menu */}
+              <div className="flex items-center space-x-4">
+                <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
+                  <Search className="h-5 w-5" />
+                </Button>
+                <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800 md:hidden">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </div>
+            </div>
           </div>
         </header>
 
         {/* Blog Content */}
         <section className="py-24">
           <div className="container mx-auto px-6">
-            <Button variant="ghost" className="mb-8 text-black" asChild>
+            <Button variant="ghost" className="mb-8 text-white" asChild>
               <Link href="/">
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
               </Link>
@@ -119,14 +118,17 @@ export default function BlogPage() {
 
             <div className="text-center mb-20">
               <h2 className="text-5xl md:text-6xl font-bold mb-6">
-                <span className="text-black">Blog</span>
+                <span className="text-white">Blog</span>
               </h2>
-              <p className="text-gray-800 max-w-3xl mx-auto text-lg">Latest insights and articles about technology</p>
+              <p className="text-zinc-400 max-w-3xl mx-auto text-lg">Latest insights and articles about technology</p>
             </div>
 
             <div className="space-y-8">
               {blogPosts.map((post) => (
-                <Card key={post.id} className="bg-white border-slate-200 hover:shadow-lg transition-all duration-300">
+                <Card
+                  key={post.id}
+                  className="bg-zinc-900 border-slate-200 hover:shadow-lg transition-all duration-300"
+                >
                   <div className="md:flex">
                     <div className="md:w-2/3">
                       <CardHeader>
@@ -143,18 +145,18 @@ export default function BlogPage() {
                           >
                             {post.category}
                           </Badge>
-                          <span className="text-sm text-gray-800">{post.readTime} okuma</span>
+                          <span className="text-sm text-zinc-400">{post.readTime} okuma</span>
                         </div>
-                        <CardTitle className="text-xl text-black group-hover:text-gray-800 transition-colors duration-300">
+                        <CardTitle className="text-xl text-white group-hover:text-gray-800 transition-colors duration-300">
                           <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <CardDescription className="text-base mb-6 line-clamp-3 text-gray-800 leading-relaxed">
+                        <CardDescription className="text-base mb-6 line-clamp-3 text-zinc-400 leading-relaxed">
                           {post.excerpt}
                         </CardDescription>
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-4 text-sm text-gray-800">
+                          <div className="flex items-center gap-4 text-sm text-zinc-400">
                             <div className="flex items-center gap-2">
                               <User className="w-4 h-4" />
                               {post.author}
@@ -164,7 +166,7 @@ export default function BlogPage() {
                               {post.date}
                             </div>
                           </div>
-                          <Button variant="ghost" size="sm" className="text-black hover:text-gray-800" asChild>
+                          <Button variant="ghost" size="sm" className="text-white hover:text-gray-800" asChild>
                             <Link href={`/blog/${post.slug}`}>
                               Read More <ArrowRight className="ml-2 w-4 h-4" />
                             </Link>
