@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Mail, MapPin, Github, Linkedin, Code, Brain, TrendingUp, Menu } from "lucide-react"
 import Link from "next/link"
 import StaticBackground from "@/components/static-background"
+import LanguageSwitcher from "@/components/language-switcher"
 
 export default function AboutPage() {
   return (
@@ -14,18 +15,6 @@ export default function AboutPage() {
 
       {/* Content Overlay */}
       <div className="relative z-10">
-        {/* Top Bar */}
-        <div className="bg-black border-b border-zinc-800">
-          <div className="container mx-auto px-4 flex justify-end py-2">
-            <Button variant="ghost" size="sm" className="text-white text-xs hover:bg-zinc-800">
-              SUBSCRIBE
-            </Button>
-            <Button variant="ghost" size="sm" className="text-white text-xs hover:bg-zinc-800">
-              SIGN IN
-            </Button>
-          </div>
-        </div>
-
         {/* Header */}
         <header className="bg-black sticky top-0 z-50 border-b border-zinc-800">
           <div className="container mx-auto px-4 py-4">
@@ -57,8 +46,9 @@ export default function AboutPage() {
                 </Link>
               </nav>
 
-              {/* Search and Menu */}
+              {/* Search, Language Switcher and Menu */}
               <div className="flex items-center space-x-4">
+                <LanguageSwitcher />
                 <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
                   <Menu className="h-5 w-5" />
                 </Button>

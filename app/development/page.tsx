@@ -1,12 +1,11 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { Menu, Search } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import StaticBackground from "@/components/static-background"
-import Image from "next/image"
+import LanguageSwitcher from "@/components/language-switcher"
 
 export default function DevelopmentPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -15,27 +14,6 @@ export default function DevelopmentPage() {
     setIsVisible(true)
   }, [])
 
-  const latestArticles = [
-    {
-      title: "Full-Stack Development with Next.js 15",
-      excerpt: "Complete guide to building modern web applications with the latest Next.js features.",
-      image: "/images/tech-article-1.png",
-      category: "Development",
-    },
-    {
-      title: "API Design: RESTful vs GraphQL in 2025",
-      excerpt: "Comparing modern API architectures and choosing the right approach for your project.",
-      image: "/images/tech-article-2.png",
-      category: "Development",
-    },
-    {
-      title: "Database Optimization for High-Performance Applications",
-      excerpt: "Advanced techniques for improving database performance and scalability.",
-      image: "/images/tech-article-3.png",
-      category: "Development",
-    },
-  ]
-
   return (
     <div className="min-h-screen text-white bg-black" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* Static Background */}
@@ -43,18 +21,6 @@ export default function DevelopmentPage() {
 
       {/* Content Overlay */}
       <div className="relative z-10">
-        {/* Top Bar */}
-        <div className="bg-black border-b border-zinc-800">
-          <div className="container mx-auto px-4 flex justify-end py-2">
-            <Button variant="ghost" size="sm" className="text-white text-xs hover:bg-zinc-800">
-              SUBSCRIBE
-            </Button>
-            <Button variant="ghost" size="sm" className="text-white text-xs hover:bg-zinc-800">
-              SIGN IN
-            </Button>
-          </div>
-        </div>
-
         {/* Header */}
         <header className="bg-black sticky top-0 z-50 border-b border-zinc-800">
           <div className="container mx-auto px-4 py-4">
@@ -86,11 +52,12 @@ export default function DevelopmentPage() {
                 </Link>
               </nav>
 
-              {/* Search and Menu */}
+              {/* Search, Language Switcher and Menu */}
               <div className="flex items-center space-x-4">
                 <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
                   <Search className="h-5 w-5" />
                 </Button>
+                <LanguageSwitcher />
                 <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800 md:hidden">
                   <Menu className="h-5 w-5" />
                 </Button>
@@ -125,52 +92,9 @@ export default function DevelopmentPage() {
                 </p>
               </div>
             </div>
-
-            {/* Articles Grid */}
-            <div className="grid md:grid-cols-3 gap-8">
-              {latestArticles.map((article, index) => (
-                <div key={index} className="group">
-                  <div className="relative aspect-video mb-4 overflow-hidden rounded-lg">
-                    <Image
-                      src={article.image || "/placeholder.svg"}
-                      alt={article.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <Badge className="bg-zinc-800 text-xs mb-2">{article.category}</Badge>
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-green-400">
-                    <Link href="#">{article.title}</Link>
-                  </h3>
-                  <p className="text-zinc-400 text-sm mb-3">{article.excerpt}</p>
-                  <div className="flex items-center text-xs text-zinc-500">
-                    <span>AGStellar Team</span>
-                    <span className="mx-1">•</span>
-                    <span>June 5, 2025</span>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </main>
 
-        {/* Newsletter */}
-        <section className="py-16 bg-zinc-800">
-          <div className="container mx-auto px-4 max-w-4xl text-center">
-            <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-            <p className="text-zinc-300 mb-8 max-w-2xl mx-auto">
-              Subscribe to our newsletter to receive the latest updates on technology, AI, and software development.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="flex-1 px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-green-500"
-              />
-              <Button className="bg-green-500 hover:bg-green-600 text-white">Subscribe</Button>
-            </div>
-          </div>
-        </section>
         {/* Footer */}
         <footer className="bg-black py-12 border-t border-zinc-800">
           <div className="container mx-auto px-4">
