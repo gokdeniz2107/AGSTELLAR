@@ -84,7 +84,7 @@ export default function ContactPage() {
 
                   <div className="space-y-8">
                     {[
-                      { icon: Mail, label: "Email", value: "info@agstellar.com" },
+                      { icon: Mail, label: "Email", value: "agstellarai@gmail.com" },
                       { icon: Phone, label: "Phone", value: "+90 537 426 49 49" },
                       { icon: MapPin, label: "Location", value: "Antalya, Turkey" },
                     ].map((contact, index) => (
