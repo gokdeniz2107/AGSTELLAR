@@ -5,7 +5,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Mail, Phone, MapPin, Github, Linkedin, Menu, Search } from "lucide-react"
 import Link from "next/link"
 import StaticBackground from "@/components/static-background"
-import LanguageSwitcher from "@/components/language-switcher"
 
 export default function ContactPage() {
   return (
@@ -54,7 +53,6 @@ export default function ContactPage() {
                 <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
                   <Search className="h-5 w-5" />
                 </Button>
-                <LanguageSwitcher />
                 <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800 md:hidden">
                   <Menu className="h-5 w-5" />
                 </Button>

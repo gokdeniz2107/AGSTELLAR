@@ -5,7 +5,6 @@ import { Menu, Search } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import StaticBackground from "@/components/static-background"
-import LanguageSwitcher from "@/components/language-switcher"
 
 export default function DevelopmentPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -57,7 +56,6 @@ export default function DevelopmentPage() {
                 <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
                   <Search className="h-5 w-5" />
                 </Button>
-                <LanguageSwitcher />
                 <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800 md:hidden">
                   <Menu className="h-5 w-5" />
                 </Button>

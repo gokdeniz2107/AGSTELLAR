@@ -5,7 +5,6 @@ import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import StaticBackground from "@/components/static-background"
 import { Menu, Search, ChevronRight } from "lucide-react"
-import LanguageSwitcher from "@/components/language-switcher"
 
 export default function ProjectsPage() {
   const projects = [
@@ -90,7 +89,6 @@ export default function ProjectsPage() {
                 <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
                   <Search className="h-5 w-5" />
                 </Button>
-                <LanguageSwitcher />
                 <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800 md:hidden">
                   <Menu className="h-5 w-5" />
                 </Button>

@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, ArrowRight, Calendar, User, Search, Menu } from "lucide-react"
 import Link from "next/link"
 import StaticBackground from "@/components/static-background"
-import LanguageSwitcher from "@/components/language-switcher"
 
 export default function BlogPage() {
   const blogPosts = [
@@ -88,7 +87,6 @@ export default function BlogPage() {
                 <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
                   <Search className="h-5 w-5" />
                 </Button>
-                <LanguageSwitcher />
                 <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800 md:hidden">
                   <Menu className="h-5 w-5" />
                 </Button>

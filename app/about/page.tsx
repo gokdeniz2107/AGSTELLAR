@@ -5,7 +5,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Mail, MapPin, Github, Linkedin, Code, Brain, TrendingUp, Menu } from "lucide-react"
 import Link from "next/link"
 import StaticBackground from "@/components/static-background"
-import LanguageSwitcher from "@/components/language-switcher"
 
 export default function AboutPage() {
   return (
@@ -48,7 +47,6 @@ export default function AboutPage() {
 
               {/* Search, Language Switcher and Menu */}
               <div className="flex items-center space-x-4">
-                <LanguageSwitcher />
                 <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
                   <Menu className="h-5 w-5" />
                 </Button>
