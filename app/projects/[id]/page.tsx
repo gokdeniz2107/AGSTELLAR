@@ -210,6 +210,46 @@ export default function ProjectDetailPage() {
         "Data-driven decision making across business functions",
       ],
     },
+    "segu-corporate-website": {
+      title: "Corporate Website for Segu Teknoloji",
+      subtitle: "Modern Digital Presence for Telecommunications Leader",
+      description: `
+        <p>We designed and developed a clean, modern corporate website for Segu Teknoloji, a leading company operating in the telecommunications and infrastructure sector. This project represents our commitment to creating digital solutions that perfectly align with our clients' industry expertise and professional standards.</p>
+        
+        <p>The primary goal was to create a fast, responsive, and professional digital presence that reflects Segu Teknoloji's technical expertise and reliability in the telecommunications field. Our team focused on delivering a solution that not only meets current needs but also provides a foundation for future growth and expansion.</p>
+        
+        <h3>Key Features:</h3>
+        <ul>
+          <li>Clean, modern design reflecting telecommunications industry standards</li>
+          <li>Fully responsive layout optimized for all devices and screen sizes</li>
+          <li>Fast loading times with optimized performance metrics</li>
+          <li>Scalable architecture designed for future growth and expansion</li>
+          <li>Professional content management system for easy updates</li>
+          <li>SEO-optimized structure for enhanced online visibility</li>
+        </ul>
+        
+        <p>The website was built with scalable architecture, ensuring flexibility for future growth while maintaining the high performance standards expected in the telecommunications industry. Every aspect of the design and development process was carefully planned to create a digital presence that truly represents Segu Teknoloji's position as a trusted leader in their field.</p>
+        
+        <p><em>Delivered by Agstellar Tech – Designed to scale.</em></p>
+        
+        <p>This project showcases our ability to understand industry-specific requirements and translate them into powerful digital solutions that drive business growth and enhance professional credibility.</p>
+      `,
+      technologies: [
+        "Modern Web Development",
+        "Responsive Design",
+        "Content Management System",
+        "SEO Optimization",
+        "Performance Optimization",
+        "Scalable Architecture",
+      ],
+      outcomes: [
+        "Professional digital presence reflecting industry expertise",
+        "Fast, responsive website optimized for all devices",
+        "Scalable architecture supporting future business growth",
+        "Enhanced online visibility and professional credibility",
+        "Easy content management for ongoing updates",
+      ],
+    },
   }
 
   const project = projectDetails[projectId as keyof typeof projectDetails]

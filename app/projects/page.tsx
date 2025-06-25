@@ -44,6 +44,12 @@ export default function ProjectsPage() {
       description:
         "Interactive analytics dashboard for e-commerce businesses to track sales, customer behavior, and inventory performance with actionable insights and predictive analytics.",
     },
+    {
+      id: "segu-corporate-website",
+      title: "Corporate Website for Segu Teknoloji",
+      description:
+        "Clean, modern corporate website designed for Segu Teknoloji, a telecommunications and infrastructure company. Built with scalable architecture, ensuring fast performance and professional digital presence that reflects their technical expertise.",
+    },
   ]
 
   return (
