@@ -3,14 +3,24 @@
 export default function StaticBackground() {
   return (
     <div className="fixed inset-0 z-0">
-      {/* Siyah arka plan */}
-      <div className="absolute inset-0 bg-black" />
+      {/* Dark background */}
+      <div className="absolute inset-0 bg-background" />
 
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml,%3Csvg viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg%3E%3Cg fill=none fillRule=evenodd%3E%3Cg fill=%23ffffff fillOpacity=0.1%3E%3Ccircle cx=30 cy=30 r=1/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" />
+      {/* Grid pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(6, 182, 212, 0.3) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(6, 182, 212, 0.3) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px'
+        }}
+      />
 
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-black to-zinc-900" />
+      {/* Radial gradient overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-500/10 via-transparent to-transparent" />
+      
+      {/* Bottom gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
     </div>
   )
 }

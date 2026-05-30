@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Menu, Search } from "lucide-react"
+import { Menu, Search, TrendingUp, BarChart3, Shield, Zap, ArrowRight, ChevronRight, LineChart, Wallet, Target, Globe } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import StaticBackground from "@/components/static-background"
@@ -16,103 +16,125 @@ export default function HomePage() {
     setIsVisible(true)
   }, [])
 
-  const featuredArticle = {
-    title: "Innovating Tomorrow: The Future of AI and Technology",
-    excerpt: "How artificial intelligence is reshaping our world and what it means for the future of technology.",
-    date: "June 11, 2025",
-    category: "AI",
-    image: "/images/featured-cream-wireframe.png",
-  }
+  const tradingServices = [
+    {
+      icon: LineChart,
+      title: "Algorithmic Trading",
+      description: "Advanced AI-powered trading algorithms for optimal market execution and portfolio management.",
+    },
+    {
+      icon: BarChart3,
+      title: "Market Analysis",
+      description: "Real-time market data and comprehensive analytics to make informed trading decisions.",
+    },
+    {
+      icon: Shield,
+      title: "Risk Management",
+      description: "Sophisticated risk assessment tools to protect your investments and minimize losses.",
+    },
+    {
+      icon: Zap,
+      title: "High-Frequency Trading",
+      description: "Ultra-low latency infrastructure for lightning-fast trade execution.",
+    },
+  ]
 
-  const topStories = [
+  const marketStats = [
+    { label: "Trading Volume", value: "$2.4B+", change: "+12.5%" },
+    { label: "Active Traders", value: "50K+", change: "+8.3%" },
+    { label: "Success Rate", value: "94.7%", change: "+2.1%" },
+    { label: "Markets Covered", value: "120+", change: "+15" },
+  ]
+
+  const features = [
     {
-      title: "London Startup AI Project Revolutionizes Business Intelligence",
-      excerpt: "How this groundbreaking platform is changing the game for startups.",
-      date: "May 15, 2025",
-      category: "Tech",
-      comments: 4,
-      image: "/images/london-spring-scene.png",
-      slug: "london-startup-ai-project",
+      icon: Target,
+      title: "Precision Execution",
+      description: "Execute trades with millisecond precision across global markets.",
     },
     {
-      title: "The Evolution of Web Development in 2025",
-      excerpt: "New frameworks and technologies that are defining the modern web.",
-      date: "April 22, 2025",
-      category: "Development",
-      image: "/images/web-development-evolution.png",
-      slug: "evolution-web-development-2025",
+      icon: Wallet,
+      title: "Portfolio Optimization",
+      description: "AI-driven portfolio balancing for maximum returns.",
     },
     {
-      title: "Mobile App Trends That Will Dominate Next Year",
-      excerpt: "What to expect in the world of mobile applications in the coming year.",
-      date: "February 8, 2025",
-      category: "Mobile",
-      image: "/images/mobile-app-abstract.png",
-      slug: "mobile-app-trends-2025",
-    },
-    {
-      title: "How Blockchain is Transforming Financial Systems",
-      excerpt: "A deep dive into the impact of blockchain technology on modern finance.",
-      date: "June 7, 2025",
-      category: "Blockchain",
-      comments: 3,
-      image: "/images/blockchain-bank.png",
-      slug: "blockchain-transforming-finance",
+      icon: Globe,
+      title: "Global Markets",
+      description: "Access to forex, crypto, stocks, and commodities worldwide.",
     },
   ]
 
   const latestArticles = [
     {
-      title: "The Future of Software Development in the AI Era",
-      excerpt: "How artificial intelligence is changing the way we build and deploy software applications.",
+      title: "The Future of Algorithmic Trading in 2025",
+      excerpt: "How AI and machine learning are revolutionizing trading strategies.",
       image: "/images/tech-article-1.png",
-      category: "Technology",
-      slug: "future-software-development-ai",
+      category: "Trading",
+      slug: "future-algorithmic-trading",
     },
     {
-      title: "Building Scalable Applications with Modern Architecture",
-      excerpt: "Best practices for creating robust, maintainable, and scalable software systems.",
+      title: "Risk Management Strategies for Volatile Markets",
+      excerpt: "Protect your portfolio with advanced risk assessment techniques.",
       image: "/images/tech-article-2.png",
-      category: "Technology",
-      slug: "building-scalable-applications",
+      category: "Risk",
+      slug: "risk-management-strategies",
     },
     {
-      title: "Machine Learning Integration in Web Applications",
-      excerpt: "Practical approaches to implementing ML features in modern web development.",
+      title: "Cryptocurrency Trading: A Complete Guide",
+      excerpt: "Everything you need to know about trading digital assets.",
       image: "/images/tech-article-3.png",
-      category: "Technology",
-      slug: "machine-learning-web-applications",
+      category: "Crypto",
+      slug: "cryptocurrency-trading-guide",
     },
   ]
 
   return (
-    <div className="min-h-screen text-white bg-black" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <div className="min-h-screen text-foreground bg-background font-sans">
       {/* Static Background */}
       <StaticBackground />
 
       {/* Content Overlay */}
       <div className="relative z-10">
         {/* Header */}
-        <header className="bg-black sticky top-0 z-50 border-b border-zinc-800">
+        <header className="bg-background/80 backdrop-blur-md sticky top-0 z-50 border-b border-border">
           <div className="container mx-auto px-4 py-4">
             <div className="flex items-center justify-between">
               {/* Logo */}
               <div className="flex items-center">
                 <Link href="/" className="text-3xl font-black tracking-tighter">
-                  <span className="text-white">AG</span>
-                  <span className="text-white">STELLAR</span>
+                  <span className="text-foreground">AG</span>
+                  <span className="text-primary">STELLAR</span>
                 </Link>
               </div>
 
-              {/* Hamburger Menu and Search */}
-              <div className="flex items-center space-x-4">
-                <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
-                  <Search className="h-5 w-5" />
+              {/* Desktop Navigation */}
+              <nav className="hidden md:flex items-center gap-8">
+                <Link href="/trading" className="text-muted-foreground hover:text-primary text-sm font-medium transition-colors">
+                  Trading
+                </Link>
+                <Link href="/tech" className="text-muted-foreground hover:text-primary text-sm font-medium transition-colors">
+                  Tech
+                </Link>
+                <Link href="/ai" className="text-muted-foreground hover:text-primary text-sm font-medium transition-colors">
+                  AI
+                </Link>
+                <Link href="/projects" className="text-muted-foreground hover:text-primary text-sm font-medium transition-colors">
+                  Projects
+                </Link>
+                <Link href="/about" className="text-muted-foreground hover:text-primary text-sm font-medium transition-colors">
+                  About
+                </Link>
+              </nav>
+
+              {/* CTA and Mobile Menu */}
+              <div className="flex items-center gap-4">
+                <Button className="hidden md:flex bg-primary hover:bg-primary/90 text-primary-foreground">
+                  Start Trading
                 </Button>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="text-white hover:bg-zinc-800"
+                  className="md:hidden text-foreground hover:bg-muted"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                   <Menu className="h-5 w-5" />
@@ -122,43 +144,21 @@ export default function HomePage() {
 
             {/* Mobile Menu Dropdown */}
             {isMobileMenuOpen && (
-              <div className="mt-4 py-4 border-t border-zinc-800">
-                <nav className="flex flex-col space-y-4">
-                  <Link
-                    href="/tech"
-                    className="text-white hover:text-cyan-400 text-sm font-medium py-2 px-4 hover:bg-zinc-800 rounded-md transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Tech
-                  </Link>
-                  <Link
-                    href="/ai"
-                    className="text-white hover:text-cyan-400 text-sm font-medium py-2 px-4 hover:bg-zinc-800 rounded-md transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    AI
-                  </Link>
-                  <Link
-                    href="/development"
-                    className="text-white hover:text-cyan-400 text-sm font-medium py-2 px-4 hover:bg-zinc-800 rounded-md transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Development
-                  </Link>
-                  <Link
-                    href="/projects"
-                    className="text-white hover:text-cyan-400 text-sm font-medium py-2 px-4 hover:bg-zinc-800 rounded-md transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Projects
-                  </Link>
-                  <Link
-                    href="/about"
-                    className="text-white hover:text-cyan-400 text-sm font-medium py-2 px-4 hover:bg-zinc-800 rounded-md transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    About
-                  </Link>
+              <div className="mt-4 py-4 border-t border-border md:hidden">
+                <nav className="flex flex-col gap-2">
+                  {["Trading", "Tech", "AI", "Projects", "About"].map((item) => (
+                    <Link
+                      key={item}
+                      href={`/${item.toLowerCase()}`}
+                      className="text-foreground hover:text-primary text-sm font-medium py-2 px-4 hover:bg-muted rounded-md transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item}
+                    </Link>
+                  ))}
+                  <Button className="mt-4 bg-primary hover:bg-primary/90 text-primary-foreground">
+                    Start Trading
+                  </Button>
                 </nav>
               </div>
             )}
@@ -167,88 +167,165 @@ export default function HomePage() {
 
         {/* Main Content */}
         <main>
-          {/* Featured Article */}
-          <section className="py-8 relative">
+          {/* Hero Section */}
+          <section className="py-20 md:py-32 relative overflow-hidden">
             <div className="container mx-auto px-4">
-              <div className="grid md:grid-cols-12 gap-8">
-                {/* Left Sidebar - Fixed Featured text */}
-                <div className="hidden md:block md:col-span-1">
-                  <div className="absolute top-64 left-6 z-20">
-                    <h2 className="text-5xl font-black tracking-tighter text-white uppercase transform -rotate-90 origin-top-left whitespace-nowrap">
-                      Featured
-                    </h2>
-                  </div>
+              <div className="max-w-4xl mx-auto text-center">
+                <Badge className="bg-primary/10 text-primary border-primary/20 mb-6">
+                  Professional Trading Platform
+                </Badge>
+                <h1 className={`text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight mb-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                  <span className="text-foreground">Trade Smarter with</span>
+                  <br />
+                  <span className="text-primary">AI-Powered Solutions</span>
+                </h1>
+                <p className={`text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                  Harness the power of algorithmic trading with our cutting-edge platform. 
+                  Advanced analytics, risk management, and automated execution for professional traders.
+                </p>
+                <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2">
+                    Get Started <ArrowRight className="h-4 w-4" />
+                  </Button>
+                  <Button size="lg" variant="outline" className="border-border hover:bg-muted gap-2">
+                    View Demo <ChevronRight className="h-4 w-4" />
+                  </Button>
                 </div>
+              </div>
+            </div>
 
-                {/* Main Featured Article */}
-                <div className="md:col-span-7">
-                  <div className="relative aspect-[16/10] mb-6 bg-gradient-to-br from-stone-100 to-stone-200 rounded-lg overflow-hidden">
-                    <Image
-                      src={featuredArticle.image || "/placeholder.svg"}
-                      alt={featuredArticle.title}
-                      fill
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
-                  <Badge className="bg-cyan-500 hover:bg-cyan-600 mb-4">{featuredArticle.category}</Badge>
-                  <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight mb-4">
-                    {featuredArticle.title}
-                  </h1>
-                  <p className="text-lg text-zinc-300 mb-4">{featuredArticle.excerpt}</p>
-                  <div className="flex items-center text-sm text-zinc-400">
-                    <span>{featuredArticle.date}</span>
-                  </div>
-                </div>
+            {/* Decorative Elements */}
+            <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2" />
+            <div className="absolute top-1/2 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+          </section>
 
-                {/* Top Stories */}
-                <div className="md:col-span-4">
-                  <h3 className="text-lg font-medium text-cyan-500 mb-6">Top Stories</h3>
-                  <div className="space-y-8">
-                    {topStories.map((story, index) => (
-                      <Link key={index} href={`/articles/${story.slug}`} className="flex gap-4 group">
-                        <div className="flex-shrink-0 relative w-20 h-20 rounded-lg overflow-hidden">
-                          <Image
-                            src={story.image || "/placeholder.svg"}
-                            alt={story.title}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
+          {/* Market Stats */}
+          <section className="py-12 border-y border-border bg-card/50">
+            <div className="container mx-auto px-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {marketStats.map((stat, index) => (
+                  <div key={index} className="text-center">
+                    <div className="text-3xl md:text-4xl font-black text-foreground mb-1">{stat.value}</div>
+                    <div className="text-sm text-muted-foreground mb-1">{stat.label}</div>
+                    <div className="text-xs text-green-500 font-medium">{stat.change}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Trading Services */}
+          <section className="py-20 md:py-28">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-16">
+                <Badge className="bg-primary/10 text-primary border-primary/20 mb-4">Our Services</Badge>
+                <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">
+                  Trading Services
+                </h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                  Comprehensive trading solutions designed for professional traders and institutions.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {tradingServices.map((service, index) => (
+                  <div
+                    key={index}
+                    className="group p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                      <service.icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2 text-foreground">{service.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Features Section */}
+          <section className="py-20 md:py-28 bg-card/50">
+            <div className="container mx-auto px-4">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                  <Badge className="bg-primary/10 text-primary border-primary/20 mb-4">Why Choose Us</Badge>
+                  <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6">
+                    Built for Professional Traders
+                  </h2>
+                  <p className="text-muted-foreground mb-8">
+                    Our platform combines advanced technology with intuitive design to give you 
+                    the edge in today&apos;s fast-moving markets.
+                  </p>
+                  <div className="space-y-6">
+                    {features.map((feature, index) => (
+                      <div key={index} className="flex gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <feature.icon className="h-5 w-5 text-primary" />
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center mb-1">
-                            <Badge className="bg-zinc-800 text-xs mr-2">{story.category}</Badge>
-                            <span className="text-xs text-zinc-500">{story.date}</span>
-                          </div>
-                          <h4 className="font-bold mb-1 leading-tight text-sm group-hover:text-cyan-400 line-clamp-2">
-                            {story.title}
-                          </h4>
-                          {(story.slug === "london-startup-ai-project" ||
-                            story.slug === "blockchain-transforming-finance") && (
-                            <div className="flex items-center text-xs text-zinc-500">
-                              <span>{story.comments} comments</span>
-                            </div>
-                          )}
+                        <div>
+                          <h3 className="font-bold text-foreground mb-1">{feature.title}</h3>
+                          <p className="text-sm text-muted-foreground">{feature.description}</p>
                         </div>
-                      </Link>
+                      </div>
                     ))}
                   </div>
+                </div>
+                <div className="relative">
+                  <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 via-primary/5 to-transparent p-8 border border-border">
+                    <div className="w-full h-full rounded-xl bg-card border border-border flex items-center justify-center">
+                      <div className="text-center">
+                        <TrendingUp className="h-16 w-16 text-primary mx-auto mb-4" />
+                        <div className="text-4xl font-black text-foreground mb-2">94.7%</div>
+                        <div className="text-muted-foreground">Success Rate</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* CTA Section */}
+          <section className="py-20 md:py-28">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center p-12 rounded-3xl bg-gradient-to-br from-primary/10 via-card to-card border border-border">
+                <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">
+                  Ready to Start Trading?
+                </h2>
+                <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+                  Join thousands of professional traders who trust AGStellar for their trading needs.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2">
+                    Create Account <ArrowRight className="h-4 w-4" />
+                  </Button>
+                  <Button size="lg" variant="outline" className="border-border hover:bg-muted">
+                    Contact Sales
+                  </Button>
                 </div>
               </div>
             </div>
           </section>
 
           {/* Latest Articles */}
-          <section className="py-12 bg-zinc-900">
+          <section className="py-20 md:py-28 bg-card/50">
             <div className="container mx-auto px-4">
-              <div className="mb-8">
-                <h2 className="text-2xl font-bold">Latest Articles</h2>
+              <div className="flex items-center justify-between mb-12">
+                <div>
+                  <Badge className="bg-primary/10 text-primary border-primary/20 mb-4">Insights</Badge>
+                  <h2 className="text-3xl md:text-4xl font-black tracking-tight">Latest Articles</h2>
+                </div>
+                <Link href="/blog" className="hidden md:flex items-center gap-2 text-primary hover:underline">
+                  View All <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
 
               <div className="grid md:grid-cols-3 gap-8">
                 {latestArticles.map((article, index) => (
                   <Link key={index} href={`/articles/${article.slug}`} className="group">
-                    <div className="relative aspect-video mb-4 overflow-hidden rounded-lg">
+                    <div className="relative aspect-video mb-4 overflow-hidden rounded-xl bg-muted">
                       <Image
                         src={article.image || "/placeholder.svg"}
                         alt={article.title}
@@ -256,168 +333,84 @@ export default function HomePage() {
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
-                    <Badge className="bg-zinc-800 text-xs mb-2">{article.category}</Badge>
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-cyan-400">{article.title}</h3>
-                    <p className="text-zinc-400 text-sm mb-3">{article.excerpt}</p>
-                    <div className="flex items-center text-xs text-zinc-500">
-                      <span>June 5, 2025</span>
-                    </div>
+                    <Badge className="bg-muted text-muted-foreground text-xs mb-2">{article.category}</Badge>
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{article.title}</h3>
+                    <p className="text-muted-foreground text-sm">{article.excerpt}</p>
                   </Link>
                 ))}
+              </div>
+
+              <div className="mt-8 text-center md:hidden">
+                <Link href="/blog" className="inline-flex items-center gap-2 text-primary hover:underline">
+                  View All Articles <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             </div>
           </section>
         </main>
 
         {/* Footer */}
-        <footer className="bg-black py-12 border-t border-zinc-800">
+        <footer className="bg-background py-16 border-t border-border">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-4 gap-8 mb-12">
               <div>
-                <h3 className="text-xl font-bold mb-4">AGStellar</h3>
-                <p className="text-zinc-400 mb-4">
-                  Creating innovative software solutions that transform ideas into reality.
+                <Link href="/" className="text-2xl font-black tracking-tighter mb-4 inline-block">
+                  <span className="text-foreground">AG</span>
+                  <span className="text-primary">STELLAR</span>
+                </Link>
+                <p className="text-muted-foreground mb-4">
+                  Professional trading solutions powered by advanced AI and cutting-edge technology.
                 </p>
-                <div className="flex space-x-4">
-                  <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-5 w-5"
-                    >
-                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                    </svg>
+                <div className="flex gap-3">
+                  <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground hover:bg-muted">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
                   </Button>
-                  <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-5 w-5"
-                    >
-                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                    </svg>
+                  <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground hover:bg-muted">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
                   </Button>
-                  <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-5 w-5"
-                    >
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                      <rect width="4" height="12" x="2" y="9"></rect>
-                      <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
+                  <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground hover:bg-muted">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                   </Button>
                 </div>
               </div>
 
               <div>
-                <h4 className="font-medium mb-4 text-zinc-300">Categories</h4>
-                <ul className="space-y-2 text-zinc-400">
-                  <li>
-                    <Link href="#" className="hover:text-white">
-                      Technology
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="hover:text-white">
-                      AI & Machine Learning
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="hover:text-white">
-                      Web Development
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="hover:text-white">
-                      Mobile Apps
-                    </Link>
-                  </li>
+                <h4 className="font-bold mb-4 text-foreground">Trading</h4>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li><Link href="/trading" className="hover:text-primary transition-colors">Algorithmic Trading</Link></li>
+                  <li><Link href="/trading" className="hover:text-primary transition-colors">Market Analysis</Link></li>
+                  <li><Link href="/trading" className="hover:text-primary transition-colors">Risk Management</Link></li>
+                  <li><Link href="/trading" className="hover:text-primary transition-colors">Portfolio Tools</Link></li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="font-medium mb-4 text-zinc-300">Company</h4>
-                <ul className="space-y-2 text-zinc-400">
-                  <li>
-                    <Link href="/about" className="hover:text-white">
-                      About
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/projects" className="hover:text-white">
-                      Projects
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/contact" className="hover:text-white">
-                      Contact
-                    </Link>
-                  </li>
+                <h4 className="font-bold mb-4 text-foreground">Company</h4>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li><Link href="/about" className="hover:text-primary transition-colors">About</Link></li>
+                  <li><Link href="/projects" className="hover:text-primary transition-colors">Projects</Link></li>
+                  <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
+                  <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="font-medium mb-4 text-zinc-300">Legal</h4>
-                <ul className="space-y-2 text-zinc-400">
-                  <li>
-                    <Link href="#" className="hover:text-white">
-                      Privacy Policy
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="hover:text-white">
-                      Terms of Service
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="hover:text-white">
-                      Cookie Policy
-                    </Link>
-                  </li>
+                <h4 className="font-bold mb-4 text-foreground">Legal</h4>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li><Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
+                  <li><Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link></li>
+                  <li><Link href="#" className="hover:text-primary transition-colors">Risk Disclosure</Link></li>
                 </ul>
               </div>
             </div>
 
-            <div className="border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-              <p className="text-zinc-500 text-sm">© 2025 AGStellar. All rights reserved.</p>
-              <div className="flex items-center mt-4 md:mt-0">
-                <Button variant="link" className="text-zinc-500 text-sm hover:text-white">
-                  Privacy
-                </Button>
-                <span className="text-zinc-700 mx-2">|</span>
-                <Button variant="link" className="text-zinc-500 text-sm hover:text-white">
-                  Terms
-                </Button>
-                <span className="text-zinc-700 mx-2">|</span>
-                <Button variant="link" className="text-zinc-500 text-sm hover:text-white">
-                  Sitemap
-                </Button>
-              </div>
+            <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-muted-foreground text-sm">
+                &copy; 2025 AGStellar. All rights reserved.
+              </p>
+              <p className="text-muted-foreground text-xs">
+                Trading involves risk. Past performance is not indicative of future results.
+              </p>
             </div>
           </div>
         </footer>
