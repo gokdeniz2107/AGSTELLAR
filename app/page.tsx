@@ -2,19 +2,40 @@
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Menu, Search, TrendingUp, BarChart3, Shield, Zap, ArrowRight, ChevronRight, LineChart, Wallet, Target, Globe } from "lucide-react"
+import { Menu, TrendingUp, BarChart3, Shield, Zap, ArrowRight, ChevronRight, LineChart, Wallet, Target, Globe, TrendingDown } from "lucide-react"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import StaticBackground from "@/components/static-background"
 import Image from "next/image"
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const tickerRef = useRef<HTMLDivElement>(null)
+
+  // Market data for slider
+  const marketPairs = [
+    { pair: "BTC/USD", price: "67,842.50", change: "+2.34%", isUp: true },
+    { pair: "ETH/USD", price: "3,456.20", change: "+1.87%", isUp: true },
+    { pair: "EUR/USD", price: "1.0842", change: "-0.12%", isUp: false },
+    { pair: "GBP/USD", price: "1.2654", change: "+0.45%", isUp: true },
+    { pair: "XAU/USD", price: "2,342.80", change: "+0.98%", isUp: true },
+    { pair: "SPX500", price: "5,234.18", change: "+0.67%", isUp: true },
+    { pair: "AAPL", price: "178.45", change: "-0.23%", isUp: false },
+    { pair: "TSLA", price: "245.67", change: "+3.12%", isUp: true },
+  ]
 
   useEffect(() => {
     setIsVisible(true)
-  }, [])
+    
+    // Auto slide every 5 seconds
+    const slideInterval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % Math.ceil(marketPairs.length / 4))
+    }, 5000)
+
+    return () => clearInterval(slideInterval)
+  }, [marketPairs.length])
 
   const tradingServices = [
     {
@@ -169,7 +190,68 @@ export default function HomePage() {
         <main>
           {/* Hero Section */}
           <section className="py-20 md:py-32 relative overflow-hidden">
-            <div className="container mx-auto px-4">
+            {/* Animated Trading Background */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {/* Floating price tags */}
+              <div className="absolute top-20 left-[10%] animate-float-slow opacity-20">
+                <div className="bg-primary/20 backdrop-blur-sm rounded-lg px-3 py-2 border border-primary/30">
+                  <span className="text-primary font-mono text-sm">BTC $67,842</span>
+                </div>
+              </div>
+              <div className="absolute top-40 right-[15%] animate-float-medium opacity-20">
+                <div className="bg-primary/20 backdrop-blur-sm rounded-lg px-3 py-2 border border-primary/30">
+                  <span className="text-primary font-mono text-sm">ETH $3,456</span>
+                </div>
+              </div>
+              <div className="absolute bottom-40 left-[20%] animate-float-fast opacity-15">
+                <div className="bg-primary/20 backdrop-blur-sm rounded-lg px-3 py-2 border border-primary/30">
+                  <span className="text-primary font-mono text-sm">+2.34%</span>
+                </div>
+              </div>
+              <div className="absolute bottom-20 right-[25%] animate-float-slow opacity-15">
+                <div className="bg-primary/20 backdrop-blur-sm rounded-lg px-3 py-2 border border-primary/30">
+                  <span className="text-primary font-mono text-sm">XAU $2,342</span>
+                </div>
+              </div>
+              
+              {/* Animated chart lines */}
+              <svg className="absolute inset-0 w-full h-full opacity-10" preserveAspectRatio="none">
+                <path
+                  d="M0,200 Q100,150 200,180 T400,160 T600,200 T800,140 T1000,180 T1200,120 T1400,160"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="text-primary animate-chart-line"
+                />
+                <path
+                  d="M0,250 Q150,200 300,230 T600,210 T900,250 T1200,190 T1500,220"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  className="text-primary/50 animate-chart-line-delayed"
+                />
+              </svg>
+              
+              {/* Candlestick pattern */}
+              <div className="absolute top-1/2 left-[5%] -translate-y-1/2 flex gap-2 opacity-10 animate-pulse-slow">
+                {[40, 60, 35, 55, 70, 45, 65, 50].map((h, i) => (
+                  <div key={i} className="flex flex-col items-center">
+                    <div className={`w-2 bg-primary rounded-sm`} style={{ height: `${h}px` }} />
+                    <div className="w-px h-3 bg-primary/50" />
+                  </div>
+                ))}
+              </div>
+              <div className="absolute top-1/2 right-[5%] -translate-y-1/2 flex gap-2 opacity-10 animate-pulse-slow">
+                {[55, 45, 70, 40, 60, 50, 35, 65].map((h, i) => (
+                  <div key={i} className="flex flex-col items-center">
+                    <div className={`w-2 bg-primary rounded-sm`} style={{ height: `${h}px` }} />
+                    <div className="w-px h-3 bg-primary/50" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="container mx-auto px-4 relative z-10">
               <div className="max-w-4xl mx-auto text-center">
                 <Badge className="bg-primary/10 text-primary border-primary/20 mb-6">
                   Professional Trading Platform
@@ -197,6 +279,52 @@ export default function HomePage() {
             {/* Decorative Elements */}
             <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2" />
             <div className="absolute top-1/2 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+          </section>
+
+          {/* Market Overview Slider */}
+          <section className="py-6 border-y border-border bg-card/80 backdrop-blur-sm overflow-hidden">
+            <div className="container mx-auto px-4">
+              <div className="flex items-center gap-4 mb-4">
+                <h3 className="text-sm font-semibold text-foreground whitespace-nowrap">Market Overview</h3>
+                <div className="flex gap-1">
+                  {Array.from({ length: Math.ceil(marketPairs.length / 4) }).map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentSlide(i)}
+                      className={`w-2 h-2 rounded-full transition-all ${currentSlide === i ? 'bg-primary w-4' : 'bg-muted-foreground/30'}`}
+                    />
+                  ))}
+                </div>
+              </div>
+              
+              <div className="relative overflow-hidden">
+                <div 
+                  ref={tickerRef}
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                >
+                  {Array.from({ length: Math.ceil(marketPairs.length / 4) }).map((_, slideIndex) => (
+                    <div key={slideIndex} className="grid grid-cols-2 md:grid-cols-4 gap-4 min-w-full">
+                      {marketPairs.slice(slideIndex * 4, (slideIndex + 1) * 4).map((item, index) => (
+                        <div 
+                          key={index} 
+                          className="flex items-center justify-between p-4 rounded-xl bg-background/50 border border-border hover:border-primary/50 transition-all cursor-pointer group"
+                        >
+                          <div>
+                            <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">{item.pair}</div>
+                            <div className="text-lg font-mono font-semibold text-foreground">${item.price}</div>
+                          </div>
+                          <div className={`flex items-center gap-1 ${item.isUp ? 'text-green-500' : 'text-red-500'}`}>
+                            {item.isUp ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
+                            <span className="font-mono text-sm font-medium">{item.change}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </section>
 
           {/* Market Stats */}
