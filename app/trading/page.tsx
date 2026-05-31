@@ -2,13 +2,19 @@
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Menu, TrendingUp, TrendingDown, BarChart3, Shield, Zap, ArrowRight, LineChart, Wallet, Target, Globe, Clock, Users, DollarSign, Activity } from "lucide-react"
+import { TrendingUp, TrendingDown, Shield, Zap, ArrowRight, LineChart, Wallet, Target, Globe, Clock, Users, DollarSign, Activity } from "lucide-react"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import StaticBackground from "@/components/static-background"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
 
 export default function TradingPage() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    setIsVisible(true)
+  }, [])
 
   const tradingPackages = [
     {
@@ -110,62 +116,11 @@ export default function TradingPage() {
       <StaticBackground />
 
       <div className="relative z-10">
-        {/* Header */}
-        <header className="bg-background/80 backdrop-blur-md sticky top-0 z-50 border-b border-border">
-          <div className="container mx-auto px-4 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <Link href="/" className="text-3xl font-black tracking-tighter">
-                  <span className="text-foreground">AG</span>
-                  <span className="text-primary">STELLAR</span>
-                </Link>
-              </div>
-
-              <nav className="hidden md:flex items-center gap-8">
-                <Link href="/trading" className="text-primary text-sm font-medium">Trading</Link>
-                <Link href="/tech" className="text-muted-foreground hover:text-primary text-sm font-medium transition-colors">Tech</Link>
-                <Link href="/ai" className="text-muted-foreground hover:text-primary text-sm font-medium transition-colors">AI</Link>
-                <Link href="/projects" className="text-muted-foreground hover:text-primary text-sm font-medium transition-colors">Projects</Link>
-                <Link href="/about" className="text-muted-foreground hover:text-primary text-sm font-medium transition-colors">About</Link>
-              </nav>
-
-              <div className="flex items-center gap-4">
-                <Button className="hidden md:flex bg-primary hover:bg-primary/90 text-primary-foreground">
-                  Start Trading
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="md:hidden text-foreground hover:bg-muted"
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                >
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </div>
-            </div>
-
-            {isMobileMenuOpen && (
-              <div className="mt-4 py-4 border-t border-border md:hidden">
-                <nav className="flex flex-col gap-2">
-                  {["Trading", "Tech", "AI", "Projects", "About"].map((item) => (
-                    <Link
-                      key={item}
-                      href={`/${item.toLowerCase()}`}
-                      className="text-foreground hover:text-primary text-sm font-medium py-2 px-4 hover:bg-muted rounded-md transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item}
-                    </Link>
-                  ))}
-                </nav>
-              </div>
-            )}
-          </div>
-        </header>
+        <Header />
 
         <main>
           {/* Hero */}
-          <section className="py-20 md:py-28">
+          <section className={`py-20 md:py-28 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
                 <Badge className="bg-primary/10 text-primary border-primary/20 mb-6">Trading Services</Badge>
@@ -217,7 +172,7 @@ export default function TradingPage() {
               <div className="overflow-x-auto">
                 <div className="flex gap-4 min-w-max pb-4">
                   {marketOverview.map((market, index) => (
-                    <div key={index} className="p-4 rounded-xl bg-card border border-border min-w-[180px]">
+                    <div key={index} className="p-4 rounded-xl bg-card border border-border min-w-[180px] hover:border-primary/50 transition-all">
                       <div className="text-sm text-muted-foreground mb-1">{market.symbol}</div>
                       <div className="text-xl font-bold text-foreground mb-1">{market.price}</div>
                       <div className={`flex items-center gap-1 text-sm ${market.trending === 'up' ? 'text-green-500' : 'text-red-500'}`}>
@@ -337,20 +292,7 @@ export default function TradingPage() {
           </section>
         </main>
 
-        {/* Footer */}
-        <footer className="bg-background py-12 border-t border-border">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <Link href="/" className="text-xl font-black tracking-tighter">
-                <span className="text-foreground">AG</span>
-                <span className="text-primary">STELLAR</span>
-              </Link>
-              <p className="text-muted-foreground text-sm">
-                &copy; 2025 AGStellar. Trading involves risk.
-              </p>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   )
