@@ -1,10 +1,11 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Menu, Search } from "lucide-react"
-import Link from "next/link"
+import { Badge } from "@/components/ui/badge"
 import { useEffect, useState } from "react"
 import StaticBackground from "@/components/static-background"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
+import { Brain, Sparkles, Cpu, Network } from "lucide-react"
 
 export default function AIPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -13,235 +14,99 @@ export default function AIPage() {
     setIsVisible(true)
   }, [])
 
+  const aiCapabilities = [
+    {
+      icon: Brain,
+      title: "Machine Learning",
+      description: "Advanced ML models for predictive analytics and pattern recognition.",
+    },
+    {
+      icon: Sparkles,
+      title: "Natural Language Processing",
+      description: "Intelligent text analysis and conversational AI interfaces.",
+    },
+    {
+      icon: Cpu,
+      title: "Computer Vision",
+      description: "Image and video analysis for automated visual understanding.",
+    },
+    {
+      icon: Network,
+      title: "Neural Networks",
+      description: "Deep learning architectures for complex problem solving.",
+    },
+  ]
+
   return (
-    <div className="min-h-screen text-white bg-black" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-      {/* Static Background */}
+    <div className="min-h-screen text-foreground bg-background font-sans">
       <StaticBackground />
 
-      {/* Content Overlay */}
       <div className="relative z-10">
-        {/* Header */}
-        <header className="bg-black sticky top-0 z-50 border-b border-zinc-800">
-          <div className="container mx-auto px-4 py-4">
-            <div className="flex items-center justify-between">
-              {/* Logo */}
-              <div className="flex items-center">
-                <Link href="/" className="text-3xl font-black tracking-tighter">
-                  <span className="text-white">AG</span>
-                  <span className="text-white">STELLAR</span>
-                </Link>
-              </div>
+        <Header />
 
-              {/* Navigation */}
-              <nav className="hidden md:flex items-center space-x-6">
-                <Link href="/tech" className="text-white hover:text-zinc-300 text-sm font-medium">
-                  Tech
-                </Link>
-                <Link href="/ai" className="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
-                  AI
-                </Link>
-                <Link href="/development" className="text-white hover:text-zinc-300 text-sm font-medium">
-                  Development
-                </Link>
-                <Link href="/projects" className="text-white hover:text-zinc-300 text-sm font-medium">
-                  Projects
-                </Link>
-                <Link href="/about" className="text-white hover:text-zinc-300 text-sm font-medium">
-                  About
-                </Link>
-              </nav>
-
-              {/* Search, Language Switcher and Menu */}
-              <div className="flex items-center space-x-4">
-                <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
-                  <Search className="h-5 w-5" />
-                </Button>
-                <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800 md:hidden">
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        {/* Main Content */}
-        <main className="py-12">
+        <main className="py-12 md:py-20">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h1 className="text-5xl font-black tracking-tight mb-6">Artificial Intelligence</h1>
-              <div className="max-w-4xl mx-auto">
-                <h2 className="text-2xl font-bold mb-4">Intelligence. Reimagined.</h2>
-                <p className="text-zinc-300 text-lg leading-relaxed mb-4">
-                  At AgStellar, artificial intelligence is not a feature — it's a foundation.
+            <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <Badge className="bg-primary/10 text-primary border-primary/20 mb-4">Artificial Intelligence</Badge>
+              <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">Intelligence. Reimagined.</h1>
+              <div className="max-w-3xl mx-auto">
+                <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+                  At AgStellar, artificial intelligence is not a feature — it&apos;s a foundation.
                 </p>
-                <p className="text-zinc-300 text-lg leading-relaxed mb-4">
+                <p className="text-muted-foreground text-lg leading-relaxed mb-4">
                   We design and develop intelligent systems that can learn, adapt, and reason. From deep learning models
                   and natural language interfaces to computer vision and predictive analytics, our AI technologies are
                   built to solve complex problems at scale.
                 </p>
-                <p className="text-zinc-300 text-lg leading-relaxed mb-4">
+                <p className="text-muted-foreground text-lg leading-relaxed mb-4">
                   Our mission is to harness the power of AI to unlock new efficiencies, elevate user experiences, and
-                  drive competitive advantage for businesses across industries. With a deep commitment to research and a
-                  product-driven mindset, we engineer AI not just to automate — but to amplify human capability.
+                  drive competitive advantage for businesses across industries.
                 </p>
-                <p className="text-zinc-400 text-lg">This is where innovation meets intelligence</p>
+                <p className="text-muted-foreground/70 text-lg">
+                  This is where innovation meets intelligence.
+                </p>
+              </div>
+            </div>
+
+            {/* AI Capabilities Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              {aiCapabilities.map((capability, index) => (
+                <div
+                  key={index}
+                  className="group p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <capability.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-foreground">{capability.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{capability.description}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Stats Section */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 p-8 rounded-2xl bg-card/50 border border-border">
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-black text-primary mb-1">50+</div>
+                <div className="text-sm text-muted-foreground">AI Models Deployed</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-black text-primary mb-1">99.2%</div>
+                <div className="text-sm text-muted-foreground">Accuracy Rate</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-black text-primary mb-1">1M+</div>
+                <div className="text-sm text-muted-foreground">Predictions Daily</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-black text-primary mb-1">24/7</div>
+                <div className="text-sm text-muted-foreground">System Uptime</div>
               </div>
             </div>
           </div>
         </main>
 
-        {/* Footer */}
-        <footer className="bg-black py-12 border-t border-zinc-800">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-4 gap-8 mb-12">
-              <div>
-                <h3 className="text-xl font-bold mb-4">AGStellar</h3>
-                <p className="text-zinc-400 mb-4">
-                  Creating innovative software solutions that transform ideas into reality.
-                </p>
-                <div className="flex space-x-4">
-                  <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-5 w-5"
-                    >
-                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                    </svg>
-                  </Button>
-                  <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-5 w-5"
-                    >
-                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                    </svg>
-                  </Button>
-                  <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-5 w-5"
-                    >
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                      <rect width="4" height="12" x="2" y="9"></rect>
-                      <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                  </Button>
-                </div>
-              </div>
-
-              <div>
-                <h4 className="font-medium mb-4 text-zinc-300">Categories</h4>
-                <ul className="space-y-2 text-zinc-400">
-                  <li>
-                    <Link href="#" className="hover:text-white">
-                      Technology
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="hover:text-white">
-                      AI & Machine Learning
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="hover:text-white">
-                      Web Development
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="hover:text-white">
-                      Mobile Apps
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-medium mb-4 text-zinc-300">Company</h4>
-                <ul className="space-y-2 text-zinc-400">
-                  <li>
-                    <Link href="/about" className="hover:text-white">
-                      About
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/projects" className="hover:text-white">
-                      Projects
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/contact" className="hover:text-white">
-                      Contact
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-medium mb-4 text-zinc-300">Legal</h4>
-                <ul className="space-y-2 text-zinc-400">
-                  <li>
-                    <Link href="#" className="hover:text-white">
-                      Privacy Policy
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="hover:text-white">
-                      Terms of Service
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="hover:text-white">
-                      Cookie Policy
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-              <p className="text-zinc-500 text-sm">&copy; 2025 AGStellar. All rights reserved.</p>
-              <div className="flex items-center mt-4 md:mt-0">
-                <Button variant="link" className="text-zinc-500 text-sm hover:text-white">
-                  Privacy
-                </Button>
-                <span className="text-zinc-700 mx-2">|</span>
-                <Button variant="link" className="text-zinc-500 text-sm hover:text-white">
-                  Terms
-                </Button>
-                <span className="text-zinc-700 mx-2">|</span>
-                <Button variant="link" className="text-zinc-500 text-sm hover:text-white">
-                  Sitemap
-                </Button>
-              </div>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   )

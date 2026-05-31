@@ -3,12 +3,15 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-inter"
+})
 
 export const metadata: Metadata = {
-  title: "AGStellar - AI & Software Solutions",
-  description: "Creating innovative software solutions that transform ideas into reality.",
-    generator: 'v0.dev'
+  title: "AGStellar - Trading & AI Solutions",
+  description: "Professional trading solutions powered by advanced AI and cutting-edge technology.",
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -17,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="dark bg-background">
+      <body className={`${inter.className} ${inter.variable}`}>{children}</body>
     </html>
   )
 }
